@@ -82,9 +82,8 @@ COPY apache2-foreground /usr/local/bin/
 RUN chmod +x /usr/local/bin/apache2-foreground /usr/local/bin/docker-php-ext-*
 WORKDIR /var/www/html
 
-RUN docker-php-ext-install mysql mysqli pdo pdo_mysql
-#postgres drivers
-RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+#drivers
+RUN docker-php-ext-install mysql mysqli pdo pdo_mysql pdo_pgsql
 
 # Change www-data user to match the host system UID and GID and chown www directory
 RUN usermod --non-unique --uid 1000 www-data \
