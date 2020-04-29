@@ -87,7 +87,7 @@ RUN docker-php-ext-install mysql mysqli pdo pdo_mysql
 #postgres drivers
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
-RUN apt-get update && apt-get install php5-gd
+RUN apt-get update && apt-get install -y php5-gd
 
 # Change www-data user to match the host system UID and GID and chown www directory
 RUN usermod --non-unique --uid 1000 www-data \
