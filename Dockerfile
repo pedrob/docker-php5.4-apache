@@ -48,6 +48,14 @@ RUN buildDeps=" \
 		libsqlite3-dev \
 		libssl-dev \
 		libxml2-dev \
+		libgd-dev \
+		libmemcached-dev \
+    		libz-dev \
+    		libpq-dev \
+    		libjpeg-dev \
+    		libpng12-dev \
+    		libfreetype6-dev \
+    		libmcrypt-dev
 	" \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
@@ -87,7 +95,13 @@ RUN docker-php-ext-install mysql mysqli pdo pdo_mysql
 #postgres drivers
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
-RUN apt-get update && apt-get install -y php5-gd
+# Install the PHP gd library
+RUN docker-php-ext-install gd && \
+    docker-php-ext-configure gd \
+        --enable-gd-native-ttf \
+        --with-jpeg-dir=/usr/lib \
+        --with-freetype-dir=/usr/include/freetype2 && \
+    docker-php-ext-install gd
 
 # Change www-data user to match the host system UID and GID and chown www directory
 RUN usermod --non-unique --uid 1000 www-data \
