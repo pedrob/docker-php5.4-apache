@@ -55,7 +55,7 @@ RUN buildDeps=" \
     		libjpeg-dev \
     		libpng12-dev \
     		libfreetype6-dev \
-    		libmcrypt-dev
+    		libmcrypt-dev \
 	" \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
