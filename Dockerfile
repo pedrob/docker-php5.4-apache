@@ -50,6 +50,7 @@ RUN buildDeps=" \
 		libgd-dev \
     		libz-dev \
     		libpq-dev \
+		libjpeg-turbo8-dev \
     		libjpeg-dev \
     		libpng12-dev \
 	" \
