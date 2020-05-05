@@ -47,12 +47,6 @@ RUN buildDeps=" \
 		librecode-dev \
 		libssl-dev \
 		libxml2-dev \
-		libgd-dev \
-    		libz-dev \
-    		libpq-dev \
-		libjpeg-turbo8-dev \
-    		libjpeg-dev \
-    		libpng12-dev \
 	" \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
@@ -90,6 +84,7 @@ WORKDIR /var/www/html
 #postgres drivers
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
+RUN apt-get install -qq -y libgd-dev libfreetype6-dev libjpeg62-turbo-dev libpng12-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 
