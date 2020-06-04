@@ -82,7 +82,7 @@ RUN chmod +x /usr/local/bin/apache2-foreground /usr/local/bin/docker-php-ext-*
 WORKDIR /var/www/html
 
 #postgres drivers
-RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql pgsql
 
 RUN apt-get install -qq -y libgd-dev libfreetype6-dev libjpeg62-turbo-dev libpng12-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
